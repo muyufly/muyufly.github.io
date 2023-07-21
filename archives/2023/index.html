@@ -31,6 +31,8 @@
 
 
 
+<script src="/js/lib/search.js"></script>
+
 
 
 <link rel="stylesheet" href="/css/main.css" />
@@ -145,14 +147,51 @@
                     
 <div id="archives">
     
+    <input id="search-bar" class="input" placeholder="搜索" v-model="rawSearch" />
+    
     <div id="timeline-wrap" ref="timeline">
         
-        <div class="timeline" data-title="helloworld">
+        <div class="timeline" data-title="暮落雨生">
             <div class="timeline-tail"></div>
             <div class="timeline-content">
-                <div class="item-time">2023/7/20</div>
-                <a href="/2023/07/20/hello-world/">
-                    <h3>Hello World</h3>
+                <div class="item-time">2023/7/21</div>
+                <a href="/2023/07/21/%E6%9A%AE%E8%90%BD%E9%9B%A8%E7%94%9F/">
+                    <h3>暮落雨生</h3>
+                </a>
+                <div class="info">
+                    
+                    <span class="category">
+                        <a href="/categories/novel/">
+                            <span class="icon">
+                                <i class="fa-solid fa-bookmark fa-fw"></i>
+                            </span>
+                            novel
+                        </a>
+                    </span>
+                    
+                    
+                    <span class="tags">
+                        <span class="icon">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </span>
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/%E6%9A%AE%E8%90%BD%E9%9B%A8%E7%94%9F/" style="color: #ff7d73">暮落雨生</a>
+                        </span>
+                        
+                    </span>
+                    
+                </div>
+            </div>
+        </div>
+        
+        <div class="timeline" data-title="小站简介">
+            <div class="timeline-tail"></div>
+            <div class="timeline-content">
+                <div class="item-time">2023/7/21</div>
+                <a href="/2023/07/21/%E5%B0%8F%E7%AB%99%E7%AE%80%E4%BB%8B/">
+                    <h3>小站简介</h3>
                 </a>
                 <div class="info">
                     
