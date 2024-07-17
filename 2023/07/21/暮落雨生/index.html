@@ -1,0 +1,271 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>暮落雨生 | 倚衡</title>
+        <meta name="author" content="yiheng" />
+        <meta name="description" content="小说，摄影，插画小站" />
+        <meta name="keywords" content="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+        <link rel="icon" href="/images/favicon.png" />
+        <script src="https://cdn.staticfile.org/vue/3.2.47/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.3.0/css/all.min.css" />
+<link rel="stylesheet" href="/css/fonts.min.css" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.7.0/highlight.min.js"></script>
+<script src="https://cdn.staticfile.org/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.7.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+    <meta name="generator" content="Hexo 6.3.0"></head>
+    <body>
+        <div id="layout">
+            <transition name="fade">
+                <div id="loading" v-show="loading">
+                    <div id="loading-circle">
+                        <h2>LOADING</h2>
+                        <p>加载过慢请开启缓存 浏览器默认开启</p>
+                        <img src="/images/loading.gif" />
+                    </div>
+                </div>
+            </transition>
+            <nav id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <div id="desktop-menu">
+        <a class="title" href="/">
+            <span>倚衡</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </div>
+    <div id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;倚衡</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </div>
+</nav>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+            <transition name="into">
+                <div id="main" v-show="!loading">
+                    <div class="article">
+    <div>
+        <h1>暮落雨生</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/7/21
+        </span>
+        
+        <span class="category">
+            <a href="/categories/novel/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                novel
+            </a>
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/%E6%9A%AE%E8%90%BD%E9%9B%A8%E7%94%9F/" style="color: #00bcd4">暮落雨生</a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <p>暮落雨生<br>怎会有如此晦涩的名字。我这样想。</p>
+<img src="/2023/07/21/%E6%9A%AE%E8%90%BD%E9%9B%A8%E7%94%9F/p1.jpg" class>
+
+
+
+
+
+
+<p>（一）<br> 那是许多年前，我下定决心到暮雨池定居。经过一段漫长而又模糊的行程，我到达暮雨池时已是傍晚。天边一抹红晕悄然升起，像被挑逗的情人的脸—又很快阴沉下去，似是玩笑过了头，责怪之色骤起。很快便挤出泪来，随风斜洒在我身上。凄冷又柔情。暮雨缓缓从脸颊滑下，留下道道易逝的痕迹。仿佛是我流下的泪。<br>眼镜被雨水覆盖，湖面上浓稠的雾忽地出现，好像它本来就存在。<br>我渐渐地看不清路。脚下是尖锐而湿滑的乱石，而不远处则是高耸的悬崖。是不是会死？我想象着自己粉身碎骨的场面。心中出现一中介乎恐惧和兴奋的奇怪感觉。<br>我颤抖着。<br>在我因颤抖和神志不清掉下悬崖之前，到家了。<br>那是一栋湮灭在雨雾中的老木屋。我花了多年积蓄才买下。它的位置很好，在暮雨池旁的高崖上，我只要向窗外一瞥，就能尽收整个暮雨池—在我到达的那一刻，它也理所当然地成为了我的家。<br>我推开门。它还没做好准备，发出吱吱呀呀的骂声。<br>一阵灰尘卷向我，带着水气和腐木的味道。我轻拉下油腻的拉绳开关。灯竟然亮了。<br>橘黄色的光，在屋内漫开，给事物鎏金。古朴而静谧。<br>时间似乎在此静止，我呆站着，好让自己融入。<br>一道紫色的闪电将天空利落地斩断。我同房子一起，随晚来的音波摇晃。我终于意识到，我到家了。</p>
+<span id="more"></span>
+
+<p> （二）<br>怎么就过了三年？我清醒而又迷茫地问自己。照理说，三年就是三年，时间在那里流动，是自然得不能再自然的事。<br>可，总感觉失去了一些切实存在而又虚无的东西。<br>我缓缓闭上眼，感受早起的干涩。丝丝的痛，不紧不慢地渗入，像被烈日烤得炽热的雨润泽。<br>再睁开眼却是因为被真正的烈日灼痛。我挺起腰，靠在床头。视野因突然变亮而变得抽象—光圈和阴影像梵高画中的星空一样-扭曲起来。<br>不久，星空逐渐变蓝，碧蓝的湖水从里面漫出。一会儿，目光所至之处，皆成游着金丝的蓝。<br>这是暮雨池，正午的暮雨池。像将一块海蓝宝石最清澈的那一颗微粒抽象出来，并以10的10次方级放大。又抓起茫茫多的金丝，一把洒在上面。最后，它们一同冰凉地融化，随风摇晃。<br>我倒了一杯热茶，坐在悬崖边的落地窗畔，陷入沙发中。听着中午汹涌的浪，击打在崎岖的石壁上。粉身碎骨，化为点点微光。只觉周身愈发绵软，而心中的温柔也到了满溢的地步。<br>我抿了口茶，苦涩使我清醒。我走到不远处的唱片机旁，选了最老的那一张，打开开关，将唱针小心地移上。顺手拿了本轻小说，回到窗边看。<br>唱片因为磨损严重，不时发出嗒嗒声。好像时钟旋转。<br>当两面都放完时，我下决心出门，去六公里外的小镇。<br>推开门，潮湿的水气和干燥的山石扑向我。我骑上自行车，顺着石子路下坡。既颠簸，又爽快。不一会儿就达到了危险的速度。夹带着腥味的风拍打着我的脸，我享受着这份坎坷而又自由的快感。<br>很快就到了坡底，我回头，看向暮雨池，只有此刻，才知道它的浩瀚。它是一个长300<br>公里宽200公里的大型咸水湖。四周都是荒凉的高山，唯有山间几条大河冲刷出的河谷有人类聚落。<br>我这次去的小镇叫柳流镇，在柳流河（上游叫冰流河）的冲积扇。<br>日光烤得我头有些晕，好在柳流镇也不远了。<br>我骑上了柏油路，一片柳林映入眼帘，郁郁葱葱。与周围群山的苦黄形成鲜明对比。就像两片面包夹了生菜。啊，我有着样的想法，大概是饿了。<br>河心的沙洲上，柳树更加茂密。微风起，柳叶落，清水流。叶片抱成一团，顺水旋转着，生起点点白沫。<br>不一会儿就去了不为人知的远方。难怪有“柳流”之名。<br>我这次去镇上是为了寄一封信。</p>
+<p>（三）<br>柳树渐渐变得翠绿，路旁的土壤由白黄变为棕色，进而变为水嫩的黑色。柏油路也因之“山河改观”：由黑色背景上绵延着黄白色恣意的群山，变为黑夜中的秋山—柳叶被风吹落后，不一会儿就被烤干了。<br>忽地，当骑过一个弯道后，一面凹凸有致的白墙显现。<br>那是柳流镇。它建在一个缓坡上。每一间屋子都是一个规整的几何体。具象而又抽象。到了，经过艰难而又易忘的骑行。<br>我找了家咖啡馆，点了几种甜点，又要了杯冰咖啡。我双手捂着咖啡杯，不忍喝下，感受着刺骨的冰一点点将热量驱散。终于还是喝了，冰冷而苦涩的液体从咽喉滑下，倾泻到胃里还是冰的。我猛地一激灵，但疲惫也被抖了出来。甜点也不错，但太少，只吃了半饱。<br>我心满意足地离开了咖啡店，踏上苍白炽热的石板路。<br>经过一阵眩目后，“邮局”到了。<br>那是一个巨大的正八面体，走到跟前时，已<br>占据了大半天空。近乎完美的几何体上只有<br>一条细线，那是投信的入口。<br>信件交流曾在几十年前绝迹，而近几年又兴起了。原因有很多，但最主要的，是随着最新一次信息革命，人们的信息生活已经达到了“极致”—几乎所有的知识都共享，几乎所有的日常用品都信息化，十多年前不敢想的事情已经触手可及。但在得到这一切的同时，人们也失去了最宝贵的东西—隐私。每一句话，每一个动作都暴露在惨白的现实下。所以，那种纸质的，纯粹的，私密的交流又被人们从灰尘堆中捡出来。<br>尽管当今的交通已经足以在一天之内以极为廉价的方式到世界的任何一个角落，但不管双方是隔了一个街区，一个城市，一个省份，一个国家还是一个大洲，派送时间总是固定的一个月。官方说这是为了重现曾经那份细水长流的爱，但民间普遍认为这是为了防止间谍利用这种有极大隐私的通信方式。我从背包中掏出一个棕色的平整信封，夹了一束刚在路边采的迷迭香，果断又急切地将它塞入“信箱”。<br>大约两星期前的一个平静的晚上，我写下：<br>绛，<br>见字如晤。好久未给你写信了。你那边，还好吗······<br>我这一切都好，似乎还好过头了。这几年，我被阳光，碧水，音乐，茶香和咖啡香包围，逐渐沉沦于空虚的温柔。<br>真想让你来看一看。你也许会爱上这里，不，你一定会爱上这里。想象一下，坐在悬崖边的窗畔，将窗户微微打开，任由浪声和发咸的风进入，听着上世纪的乡村音乐，手里捧着杯冰镇的葡萄酒。<br>······对于我几年前的不辞而别，我真的很抱歉，我本该带你一起走的。<br>不说了，我知道我辩解的苍白无力，但还是恳请你不要记恨。<br>我突然脑中一热，不受控制地写下：<br>你如果有时间，可以在两个月后来吗？我真的很想你。可以的话，写封回信，那样信就会和你一同到来。好像我们之间本没有距离。<br>但我并不打算修改，将信小心地装入信封。</p>
+<p>（四）<br>快两个月了······<br>如果赤雨要来的话，明天我就会收到那封回信。我了解她，收到我来信的那一刻，心中必然有了决断。<br>只要见到信······那就可以见到······我的故人。<br>那是我到暮雨池后第一次失眠，辗转反侧。心中时而火热，时而冰冷，时而期盼，时而绝望。总想着碎成一片片的光怪陆离的事—既不在过往，也不在将来—然后惊醒。<br>不得已，打开了床旁昏暗的灯，直起身子，靠在发冷的床背上。闭着眼，感受体温随室温变化，逐渐变凉又逐渐升温。<br>天终于亮了。我又转到了光的那面。<br>我的心却越发忐忑起来，匆匆吃过早点后，开始整理起本就整洁的房间。（并不是因为我很有条理，只是物件太少了，没有给混乱留余地。）<br>我竖着耳朵，听窗外有没有无人机的响声。其实我清楚地知道，送信的时间是统一的10：00，不会早一秒，也不会晚一秒。但，这样做，或许能增加一份收到回信的可能性吧。<br>终于，9：59的时候，我听到远处传来无人机旋翼的如黄蜂一般的噪声。近了，近了。10：00整时，门外发出金属盒掉落的声音。我急忙打开门，捡起金属盒，又急忙跑到屋内，这期间，它已经通过人脸识别辨别出了我是信件的主人。<br>金属盒缓慢地打开。<br>里面躺着一个朱红色的信封。打开。一束忘忧草，和一张青色卡片：<br>我也想见你。<br>我的心重回了往日的平静，那是赤雨带给我的，一定是。遥想和她在一起时，一切都仿佛静止，连那暴戾的微观世界，也都逐渐变缓。我们冷下来，先是融为一体，又一起融<br>入大自然，最后一同悄无声息地消失。<br>现在的我，也消失了，因为我回忆了过往·····.</p>
+<p>（负五）<br>思绪一下回到了五年前。毫不拖泥带水，似乎这五年根本没有存在过。<br>“暮雨！”身后有人叫我，“没想到你也来了这个学校！”<br>我回头，但并不准备停下脚步。仅0.1s之后。<br>停了，整个世界都停了。<br>漫天的雪白的柳絮静止在空中，像是远空中的云沉了下来。赤红的夕阳斜照着，给天边的云和身边的云都泼上胭脂，好像它们自古以来就是一体。流光在柏油路上肆意地漫着，汇聚在一个熟悉又陌生的身影上。<br>缕缕浅灰色头发随着风飘舞，散开。棕色的眼睛出神地看着。<br>我顿时被吸进了温暖却又深不见底的漩涡。那是赤雨，我高中时代熟悉又陌生的同学。她和我并不是知音，正相反，我们是彻彻底底的两类人。<br>她因为特殊的血统，总是被人特殊看待。可因为美貌，她很受男生欢迎，她却不喜欢跟粗鲁的他们交流—当然，这也引起了其他女生的嫉妒甚至是非议。但她身边总有几个知心好友，默默地支持彼此。因此她并不担心一个人吃饭的孤独。<br>我嘛，则跟谁都处得很开，左右逢源，但论知心朋友，则是一个都没有。但我并不担心，因为我也很难感到孤独。<br>我们相识是在一个秋日的傍晚。<br>我独自一人坐在足球场上，看着烧红的半边天，任由日暮中飘来的雨打在脸上，感受那份冰冷的清醒。从怀里掏出半张餐巾纸，又拿出不知什么时候装进去的碳素笔，躲到屋檐下，趴在粗糙的水泥墙上，写到<br>独立西风里，<br>冰雨血色天。<br>静水流今日，<br>枯木落明年。<br>“你一定是个孤独的人吧。”身后忽地传来一个温柔的声音。<br>“嗯。”我不假思索地答道。心中却有些躁动，因为我看清了她那张纯真得稚嫩的脸。“你叫赤雨是吧？”我不自然地问道。<br>“嗯。”她走出房檐，如我刚才一般，目视远方，任由雨打。“你叫暮雨。在我眼中，很美。”<br>忽地，我轻声说道：“你看到了吗？暮雨是红色的。”此时落日的余辉给雨染上绯红。“所以啊，暮雨就是赤雨，赤雨就是暮雨。”她的脸也染上绯红。<br>我们的感情并未发生升华，相反，已经到达了尽头。除了每天在路上遇到会微笑着点头之外，就如陌生人一般。<br>毕业那天，她送我了一束风信子，并告诉我，她最近喜欢上了花语，因为这让她感受到了自然的含情脉脉。<br>我特意回家查了查，它的花语是“永远的怀念”。我平静地感慨到：又是一段美好的完结。<br>我们自然地念起旧日的感情，她主动来找我几次，约我去吃饭或者自习，我也自然地去找她了几次—出于同样的目的。于是我们就每天都一起活动了，渐渐地，在他人眼中我们便成了情侣。她对此没有赞成也没有反对。我也是。<br>过了一年，她突然转了专业，和我一个系。我们共同开展了一个项目。</p>
+
+    </div>
+    
+    
+    
+    
+    <div id="comment">
+        <div id="giscus-container" class="giscus"></div>
+    </div>
+    
+    
+    
+    
+</div>
+
+                    <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2024 倚衡
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;yiheng
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+                </div>
+            </transition>
+            
+            <transition name="fade">
+                <div id="preview" ref="preview" v-show="previewShow">
+                    <img id="preview-content" ref="previewContent" />
+                </div>
+            </transition>
+            
+        </div>
+        <script src="/js/main.js"></script>
+        
+        
+<script
+src="https://giscus.app/client.js"
+data-repo="muyufly/comments"
+data-repo-id="R_kgDOJ-LT6w"
+data-category="Announcements"
+data-category-id="DIC_kwDOJ-LT684CYC0i"
+data-mapping="url"
+data-strict="0"
+data-reactions-enabled="1"
+data-emit-metadata="0"
+data-input-position="bottom"
+data-theme="preferred_color_scheme"
+data-lang="zh-CN"
+crossorigin="anonymous"
+async>
+</script>
+></script>
+
+
+
+
+
+        
+    </body>
+</html>

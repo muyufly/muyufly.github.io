@@ -1,0 +1,595 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>倚衡</title>
+        <meta name="author" content="yiheng" />
+        <meta name="description" content="小说，摄影，插画小站" />
+        <meta name="keywords" content="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+        <link rel="icon" href="/images/favicon.png" />
+        <script src="https://cdn.staticfile.org/vue/3.2.47/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.3.0/css/all.min.css" />
+<link rel="stylesheet" href="/css/fonts.min.css" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.7.0/highlight.min.js"></script>
+<script src="https://cdn.staticfile.org/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.7.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+<script src="/js/lib/home.js"></script>
+
+<link rel="stylesheet" href="/css/main.css" />
+
+    <meta name="generator" content="Hexo 6.3.0"></head>
+    <body>
+        <div id="layout">
+            <transition name="fade">
+                <div id="loading" v-show="loading">
+                    <div id="loading-circle">
+                        <h2>LOADING</h2>
+                        <p>加载过慢请开启缓存 浏览器默认开启</p>
+                        <img src="/images/loading.gif" />
+                    </div>
+                </div>
+            </transition>
+            <nav id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <div id="desktop-menu">
+        <a class="title" href="/">
+            <span>倚衡</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </div>
+    <div id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;倚衡</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </div>
+</nav>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+            <transition name="into">
+                <div id="main" v-show="!loading">
+                    <div id="home-head">
+    <div id="home-background" ref="homeBackground" data-images="/images/background.jpg"></div>
+    <div id="home-info" @click="homeClick">
+        <span class="loop"></span>
+        <span class="loop"></span>
+        <span class="loop"></span>
+        <span class="loop"></span>
+        <span class="info">
+            <div class="wrap">
+                <h1>倚衡</h1>
+                <h3>二次元</h3>
+                <h5>小说，摄影，插画小站</h5>
+            </div>
+        </span>
+    </div>
+</div>
+<div id="home-posts-wrap" true ref="homePostsWrap">
+    <div id="home-posts">
+        
+
+<div class="post">
+    <a href="/2023/07/21/%E5%B0%8F%E7%AB%99%E7%AE%80%E4%BB%8B/">
+        <h2 class="post-title">小站简介</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/7/21
+        </span>
+        
+        
+        <span class="special">
+            <i class="fa-solid fa-grip-vertical fa-fw"></i>
+        </span>
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <p>本博客主要是用来分享作品，心得和实用软件，作者想贯彻落实开放包容的氛围（划掉）（装13）<br>如果有问题，欢迎补充指正<br>ps:本站开发了评论系统，请勿散播不良言论（详见免责声明）。给您磕头了qaq.</p>
+<p>如需交流，请加qq:3076581566</p>
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        
+    </div>
+    <a href="/2023/07/21/%E5%B0%8F%E7%AB%99%E7%AE%80%E4%BB%8B/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2024/01/01/2024%E6%96%B0%E5%B9%B4%E4%B8%93%E6%A0%8F/">
+        <h2 class="post-title">2024新年专栏</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="category">
+            <a href="/categories/pictures/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                pictures
+            </a>
+        </span>
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/1/1
+        </span>
+        
+        
+        <span class="special">
+            <i class="fa-solid fa-grip-vertical fa-fw"></i>
+        </span>
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <p>2024份贺卡</p>
+<img src="/2024/01/01/2024%E6%96%B0%E5%B9%B4%E4%B8%93%E6%A0%8F/2024.png" class>
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/new-year/" style="color: #03a9f4">new year</a>
+        </span>
+        
+    </div>
+    <a href="/2024/01/01/2024%E6%96%B0%E5%B9%B4%E4%B8%93%E6%A0%8F/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2023/10/03/ai%E7%BB%98%E7%94%BB%E4%B8%93%E6%A0%8F/">
+        <h2 class="post-title">ai绘画专栏</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="category">
+            <a href="/categories/pictures/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                pictures
+            </a>
+        </span>
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/10/3
+        </span>
+        
+        
+        <span class="special">
+            <i class="fa-solid fa-grip-vertical fa-fw"></i>
+        </span>
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <p>ai绘画模型地址： <a target="_blank" rel="noopener" href="https://github.com/muyufly/SD-MODELS">https://github.com/muyufly/SD-MODELS</a></p>
+<p>红v0.0.0</p>
+<img src="/2023/10/03/ai%E7%BB%98%E7%94%BB%E4%B8%93%E6%A0%8F/myprojektred.png" class>
+<p>训练底模：AbyssOrangeMix2_sfw.ckpt<br>角色：红（明日方舟）<br>图片数量:20  图片大小：512*512 epoch:10 dim:64<br>来源：pixiv<br>模型名称：myprojektred-000018.safetensors</p>
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/ai/" style="color: #00a596">ai</a>
+        </span>
+        
+    </div>
+    <a href="/2023/10/03/ai%E7%BB%98%E7%94%BB%E4%B8%93%E6%A0%8F/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2024/07/18/18/">
+        <h2 class="post-title">18</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="category">
+            <a href="/categories/post/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                post
+            </a>
+        </span>
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/7/18
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <p>18</p>
+<img src="/2024/07/18/18/114.jpg" class>
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/memory/" style="color: #ff7d73">memory</a>
+        </span>
+        
+    </div>
+    <a href="/2024/07/18/18/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2023/10/14/%E7%BE%8E%E5%9B%BE%E4%B8%93%E6%A0%8F/">
+        <h2 class="post-title">美图专栏</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="category">
+            <a href="/categories/pictures/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                pictures
+            </a>
+        </span>
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/10/14
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <img src="/2023/10/14/%E7%BE%8E%E5%9B%BE%E4%B8%93%E6%A0%8F/jq1.png" class>
+<p>作品名：少女1<br>作者：夫霙 来源：亲自上传<br>类型：板绘<br>色彩：黑白</p>
+<img src="/2023/10/14/%E7%BE%8E%E5%9B%BE%E4%B8%93%E6%A0%8F/jq2.png" class>
+<p>作者：夫霙<br>作品名：生蚝（雌堕）来源：亲自上传<br>类型：板绘<br>色彩：黑白</p>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/Paintings/" style="color: #00bcd4">Paintings</a>
+        </span>
+        
+    </div>
+    <a href="/2023/10/14/%E7%BE%8E%E5%9B%BE%E4%B8%93%E6%A0%8F/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2023/07/31/%E5%B7%9D%E8%A5%BF/">
+        <h2 class="post-title">川西</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="category">
+            <a href="/categories/photos/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                photos
+            </a>
+        </span>
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/7/31
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <p>稻城亚丁<br>央迈永山</p>
+<img src="/2023/07/31/%E5%B7%9D%E8%A5%BF/26.jpg" class>
+<img src="/2023/07/31/%E5%B7%9D%E8%A5%BF/21.jpg" class>
+<img src="/2023/07/31/%E5%B7%9D%E8%A5%BF/25.jpg" class>
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/%E5%9B%9B%E5%B7%9D%E8%A5%BF%E9%83%A8/" style="color: #00a596">四川西部</a>
+        </span>
+        
+    </div>
+    <a href="/2023/07/31/%E5%B7%9D%E8%A5%BF/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2023/07/21/%E6%9A%AE%E8%90%BD%E9%9B%A8%E7%94%9F/">
+        <h2 class="post-title">暮落雨生</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="category">
+            <a href="/categories/novel/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                novel
+            </a>
+        </span>
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/7/21
+        </span>
+        
+        
+        <span class="special">
+            <i class="fa-solid fa-grip-vertical fa-fw"></i>
+        </span>
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <p>暮落雨生<br>怎会有如此晦涩的名字。我这样想。</p>
+<img src="/2023/07/21/%E6%9A%AE%E8%90%BD%E9%9B%A8%E7%94%9F/p1.jpg" class>
+
+
+
+
+
+
+<p>（一）<br> 那是许多年前，我下定决心到暮雨池定居。经过一段漫长而又模糊的行程，我到达暮雨池时已是傍晚。天边一抹红晕悄然升起，像被挑逗的情人的脸—又很快阴沉下去，似是玩笑过了头，责怪之色骤起。很快便挤出泪来，随风斜洒在我身上。凄冷又柔情。暮雨缓缓从脸颊滑下，留下道道易逝的痕迹。仿佛是我流下的泪。<br>眼镜被雨水覆盖，湖面上浓稠的雾忽地出现，好像它本来就存在。<br>我渐渐地看不清路。脚下是尖锐而湿滑的乱石，而不远处则是高耸的悬崖。是不是会死？我想象着自己粉身碎骨的场面。心中出现一中介乎恐惧和兴奋的奇怪感觉。<br>我颤抖着。<br>在我因颤抖和神志不清掉下悬崖之前，到家了。<br>那是一栋湮灭在雨雾中的老木屋。我花了多年积蓄才买下。它的位置很好，在暮雨池旁的高崖上，我只要向窗外一瞥，就能尽收整个暮雨池—在我到达的那一刻，它也理所当然地成为了我的家。<br>我推开门。它还没做好准备，发出吱吱呀呀的骂声。<br>一阵灰尘卷向我，带着水气和腐木的味道。我轻拉下油腻的拉绳开关。灯竟然亮了。<br>橘黄色的光，在屋内漫开，给事物鎏金。古朴而静谧。<br>时间似乎在此静止，我呆站着，好让自己融入。<br>一道紫色的闪电将天空利落地斩断。我同房子一起，随晚来的音波摇晃。我终于意识到，我到家了。</p>
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/%E6%9A%AE%E8%90%BD%E9%9B%A8%E7%94%9F/" style="color: #00bcd4">暮落雨生</a>
+        </span>
+        
+    </div>
+    <a href="/2023/07/21/%E6%9A%AE%E8%90%BD%E9%9B%A8%E7%94%9F/" class="go-post">阅读全文</a>
+</div>
+
+
+        <div class="page-current">
+    <div class="prev">
+        
+    </div>
+    <div class="page-index">
+        
+        <span class="current">1</span>
+        
+    </div>
+    <div class="next">
+        
+    </div>
+</div>
+
+    </div>
+    
+    <div id="home-card">
+        <div id="card-style">
+    <div id="card-div">
+        <div class="avatar">
+            <img src="/images/avatar.jpg" alt="avatar" />
+        </div>
+        <div class="name">yiheng</div>
+        <div class="description">
+            <p>一个爱生活的二次元<br>…</p>
+
+        </div>
+        
+        
+        <div class="friend-links">
+            
+            <div class="friend-link">
+                <a target="_blank" rel="noopener" href="https://space.bilibili.com/513741787">我的bilibili</a>
+            </div>
+            
+            <div class="friend-link">
+                <a target="_blank" rel="noopener" href="https://github.com/muyufly">我的github</a>
+            </div>
+            
+        </div>
+        
+    </div>
+</div>
+
+    </div>
+    
+</div>
+
+                    <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2024 倚衡
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;yiheng
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+                </div>
+            </transition>
+            
+            <transition name="fade">
+                <div id="preview" ref="preview" v-show="previewShow">
+                    <img id="preview-content" ref="previewContent" />
+                </div>
+            </transition>
+            
+        </div>
+        <script src="/js/main.js"></script>
+        
+    </body>
+</html>
