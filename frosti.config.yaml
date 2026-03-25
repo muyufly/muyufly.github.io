@@ -36,17 +36,17 @@ site:
           target: _self
         - id: tech
           text: Tech
-          href: /blog/category/Tech
+          href: /blog/category/tech
           svg: "material-symbols:unknown-document-outline-rounded"
           target: _self
         - id: novel
           text: Novel
-          href: /blog/category/Novel
+          href: /blog/category/novel
           svg: "material-symbols:book-outline-rounded"
           target: _self
         - id: article
           text: Article
-          href: /blog/category/Article
+          href: /blog/category/article
           svg: "material-symbols:ink-pen-outline-rounded"
           target: _self
         - id: ai
