@@ -3,7 +3,7 @@ site:
   tab: muyufly # 浏览器标签栏上显示的文本
   title: muyufly # 网站的标题
   description: 一个收录写作、技术、生活、二次元的个人小站 # 网站的描述，用于SEO等
-  language: zh-CN # 网站的语言，例如 "en" 是英文
+  language: en # 网站的语言，例如 "en" 是英文
   favicon: /favicon.ico # 网站的图标，用于浏览器标签栏和其他地方显示
   theme: # 更多主题 https://daisyui.com/docs/themes/
     light: winter # 主题的浅色模式
@@ -34,15 +34,40 @@ site:
           href: /blog
           svg: "material-symbols:ink-pen-outline-rounded"
           target: _self
-        - id: documentation
-          text: Documentation
-          href: /blog/category/Documentation
+        - id: tech
+          text: Tech
+          href: /blog/category/Tech
           svg: "material-symbols:unknown-document-outline-rounded"
           target: _self
-        - id: examples
-          text: Examples
-          href: /blog/category/Examples
-          svg: "material-symbols:deployed-code-outline"
+        - id: novel
+          text: Novel
+          href: /blog/category/Novel
+          svg: "material-symbols:book-outline-rounded"
+          target: _self
+        - id: article
+          text: Article
+          href: /blog/category/Article
+          svg: "material-symbols:ink-pen-outline-rounded"
+          target: _self
+        - id: ai
+          text: AI
+          href: /blog/category/AI
+          svg: "lucide:bot"
+          target: _self
+        - id: resources
+          text: Resources
+          href: /blog/category/Resources
+          svg: "lucide:folder-heart"
+          target: _self
+        - id: pictures
+          text: Pictures
+          href: /blog/category/pictures
+          svg: "lucide:image"
+          target: _self
+        - id: photos
+          text: Photos
+          href: /blog/category/photos
+          svg: "lucide:camera"
           target: _self
         # 子菜单项配置
     - id: project
