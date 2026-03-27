@@ -3,7 +3,6 @@ title: "ai绘画专栏"
 description: "分享 AI 绘画模型地址及相关作品训练参数。"
 pubDate: "2023-10-02"
 image: /image/myprojektred.png
-badge: Pin
 categories:
   - pictures
 tags:
