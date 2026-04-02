@@ -1,6 +1,6 @@
 ---
 title: "Python Learning Day2"
-description: "学习pythonic字符串和列表处理方法，包含数据清理，zip()"
+description: "学习pythonic的字符串列表处理方法"
 pubDate: "2026-04-02"
 image: /image/pylearningCover.png
 categories:
