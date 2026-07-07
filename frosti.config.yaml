@@ -80,11 +80,17 @@ site:
       href: /friend
       svg: "material-symbols:supervisor-account-outline-rounded"
       target: _self
+    - id: contribute
+      text: Contribute
+      href: "https://github.com/muyufly/muyufly.github.io/releases"
+      svg: "material-symbols:edit-note-outline-rounded"
+      target: _blank
     - id: contact
       text: Contact
       href: "mailto:contact.evesunmaple@outlook.com"
       target: _blank # 在新标签页打开
       svg: "material-symbols:attach-email-outline-rounded"
+
 
 # 用户的个人信息
 user:

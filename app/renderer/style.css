@@ -1,0 +1,277 @@
+/* Style overrides and custom premium animations for Frosti app */
+
+:root {
+  --font-sans: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: oklch(var(--b3));
+  color: oklch(var(--bc));
+}
+
+/* ================= CUSTOM SIDEBAR NAVIGATION ================= */
+.nav-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border-radius: 0.75rem;
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: oklch(var(--bc) / 0.7);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  text-align: left;
+}
+
+.nav-btn:hover {
+  background-color: oklch(var(--b3) / 0.6);
+  color: oklch(var(--bc));
+  transform: translateX(2px);
+}
+
+.nav-btn.active {
+  background-color: oklch(var(--p));
+  color: oklch(var(--pc));
+  box-shadow: 0 4px 12px oklch(var(--p) / 0.2);
+}
+
+/* ================= TAB SYSTEM ================= */
+.tab-content {
+  display: none;
+  animation: fadeIn 0.25s ease-out forwards;
+}
+
+.tab-content.active {
+  display: flex;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ================= EDITOR SHORTCUTS BAR ================= */
+.tool-icon-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: oklch(var(--bc) / 0.7);
+  transition: all 0.15s ease;
+}
+
+.tool-icon-btn:hover {
+  background-color: oklch(var(--b1));
+  color: oklch(var(--p));
+  transform: translateY(-1px);
+}
+
+.tool-icon-btn:active {
+  transform: translateY(0);
+}
+
+/* ================= SCROLLBAR OVERRIDES ================= */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: oklch(var(--bc) / 0.15);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: oklch(var(--bc) / 0.3);
+}
+
+/* ================= LIVE PREVIEW PROSE OVERRIDES ================= */
+.markdown-body {
+  color: oklch(var(--bc));
+}
+
+.markdown-body h1 {
+  font-size: 1.8rem;
+  font-weight: 800;
+  border-bottom: 1px solid oklch(var(--bc) / 0.1);
+  padding-bottom: 0.5rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.markdown-body h2 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  border-bottom: 1px solid oklch(var(--bc) / 0.05);
+  padding-bottom: 0.3rem;
+  margin-top: 1.5rem;
+  margin-bottom: 0.8rem;
+}
+
+.markdown-body h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-top: 1.2rem;
+}
+
+.markdown-body p {
+  line-height: 1.7;
+  margin-bottom: 1rem;
+  color: oklch(var(--bc) / 0.85);
+}
+
+.markdown-body code {
+  font-family: var(--font-mono);
+  background-color: oklch(var(--b2));
+  color: oklch(var(--p));
+  padding: 0.15rem 0.35rem;
+  border-radius: 0.25rem;
+  font-size: 0.9em;
+}
+
+.markdown-body pre {
+  background-color: oklch(var(--b2));
+  padding: 1rem;
+  border-radius: 0.5rem;
+  overflow-x: auto;
+  margin: 1rem 0;
+  border: 1px solid oklch(var(--bc) / 0.05);
+}
+
+.markdown-body pre code {
+  background-color: transparent;
+  color: inherit;
+  padding: 0;
+  border-radius: 0;
+  font-size: 0.85rem;
+}
+
+.markdown-body blockquote {
+  border-left: 4px solid oklch(var(--p));
+  background-color: oklch(var(--b2) / 0.4);
+  padding: 0.75rem 1rem;
+  margin: 1rem 0;
+  border-radius: 0 0.5rem 0.5rem 0;
+  font-style: italic;
+  color: oklch(var(--bc) / 0.75);
+}
+
+.markdown-body table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+}
+
+.markdown-body th, .markdown-body td {
+  border: 1px solid oklch(var(--bc) / 0.1);
+  padding: 0.5rem 0.75rem;
+  text-align: left;
+}
+
+.markdown-body th {
+  background-color: oklch(var(--b2));
+  font-weight: 600;
+}
+
+/* ================= STEPPER PROGRESS ROW ================= */
+.step-progress-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem 1rem;
+  border-radius: 0.75rem;
+  background-color: oklch(var(--b1) / 0.4);
+  border: 1px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.step-progress-row.active {
+  background-color: oklch(var(--b1));
+  border-color: oklch(var(--p) / 0.2);
+}
+
+.step-progress-row.completed {
+  opacity: 0.8;
+}
+
+.step-indicator {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 9999px;
+  background-color: oklch(var(--b3));
+  border: 2px solid oklch(var(--bc) / 0.2);
+  font-size: 0.75rem;
+  font-weight: 700;
+  transition: all 0.3s ease;
+}
+
+.step-progress-row.active .step-indicator {
+  border-color: oklch(var(--p));
+  color: oklch(var(--p));
+}
+
+.step-progress-row.completed .step-indicator {
+  background-color: oklch(var(--su));
+  border-color: oklch(var(--su));
+  color: oklch(var(--suc));
+}
+
+.step-progress-row.failed .step-indicator {
+  background-color: oklch(var(--er));
+  border-color: oklch(var(--er));
+  color: oklch(var(--erc));
+}
+
+/* ================= IMAGE CARD HOVER ================= */
+.image-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 0.75rem;
+  border: 1px solid oklch(var(--bc) / 0.1);
+  background-color: oklch(var(--b1));
+  transition: all 0.2s ease;
+}
+
+.image-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  border-color: oklch(var(--p) / 0.3);
+}
+
+.image-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.image-card:hover .image-overlay {
+  opacity: 1;
+}

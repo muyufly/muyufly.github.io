@@ -1,0 +1,34 @@
+{
+  "name": "frosti-contributor",
+  "version": "1.0.0",
+  "description": "Desktop contributor client for muyufly.github.io",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build:win": "electron-builder --win"
+  },
+  "author": "muyufly",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^30.0.0",
+    "electron-builder": "^24.13.3"
+  },
+  "build": {
+    "appId": "com.muyufly.frosticontributor",
+    "productName": "FrostiContributor",
+    "directories": {
+      "output": "dist"
+    },
+    "win": {
+      "target": [
+        "portable",
+        "zip"
+      ]
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "renderer/**/*"
+    ]
+  }
+}

@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Frosti Blog Contributor App</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <!-- Tailwind via DaisyUI CDN for premium UI aesthetics in desktop app -->
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.24/dist/full.min.css" rel="stylesheet" type="text/css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ["Inter", "sans-serif"],
+            mono: ["JetBrains Mono", "monospace"]
+          }
+        }
+      },
+      daisyui: {
+        themes: ["winter", "dracula"]
+      }
+    }
+  </script>
+  <!-- Marked Markdown Parser -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-base-300 text-base-content min-h-screen overflow-hidden flex font-sans">
+
+  <!-- ================= SIDEBAR NAVIGATION ================= -->
+  <aside class="w-64 bg-base-200 border-r border-base-content/10 flex flex-col flex-shrink-0 select-none">
+    <div class="p-6 flex items-center gap-3 border-b border-base-content/10">
+      <div class="w-10 h-10 rounded-xl bg-primary flex items-center justify-center text-primary-content text-2xl font-bold shadow-lg shadow-primary/20">
+        ❄️
+      </div>
+      <div>
+        <h1 class="font-extrabold text-lg tracking-tight">Frosti</h1>
+        <span class="text-[10px] text-base-content/60 font-bold uppercase tracking-wider">Contributor</span>
+      </div>
+    </div>
+
+    <!-- Nav Items -->
+    <nav class="flex-grow p-4 flex flex-col gap-2">
+      <button class="nav-btn active" data-tab="tab-blog">
+        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" /></svg>
+        <span>📖 Read Blog</span>
+      </button>
+      <button class="nav-btn" data-tab="tab-write">
+        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" /></svg>
+        <span>✍️ Write Post</span>
+      </button>
+      <button class="nav-btn" data-tab="tab-media">
+        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+        <span>🖼️ Media Assets</span>
+      </button>
+      <button class="nav-btn" data-tab="tab-settings">
+        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" /><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+        <span>⚙️ GitHub Settings</span>
+      </button>
+    </nav>
+
+    <!-- Theme Switcher & Footer -->
+    <div class="p-4 border-t border-base-content/10 flex flex-col gap-3">
+      <div class="flex justify-between items-center bg-base-300 p-2 rounded-xl border border-base-content/5">
+        <span class="text-xs font-semibold">Dark Theme</span>
+        <input type="checkbox" id="theme-toggle" class="toggle toggle-primary toggle-sm" checked />
+      </div>
+      <div class="text-center text-[10px] text-base-content/40 font-medium">
+        v<span id="app-version">1.0.0</span> &bull; Frosti Static Ecosystem
+      </div>
+    </div>
+  </aside>
+
+  <!-- ================= MAIN DISPLAY PANEL ================= -->
+  <main class="flex-grow flex flex-col min-h-screen relative overflow-hidden">
+    
+    <!-- ================= TAB 1: READ BLOG ================= -->
+    <section id="tab-blog" class="tab-content active flex flex-grow flex-col h-full relative">
+      <div class="bg-base-200 border-b border-base-content/10 px-6 py-4 flex justify-between items-center flex-shrink-0 select-none">
+        <div class="flex items-center gap-3">
+          <h2 class="text-lg font-bold">📖 Read Blog</h2>
+          <span class="badge badge-sm badge-success">Online Portal</span>
+        </div>
+        <div class="flex gap-2">
+          <button id="btn-friend-links" class="btn btn-sm btn-outline btn-primary gap-2">
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 025.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
+            <span>Friend Sites</span>
+          </button>
+          <button id="btn-open-browser" class="btn btn-sm btn-ghost gap-1 tooltip tooltip-left" data-tip="Open in system browser">
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
+          </button>
+        </div>
+      </div>
+      <div class="flex-grow w-full relative bg-base-100">
+        <!-- Built-in frame to preview the blog -->
+        <iframe id="blog-iframe" src="https://muyufly.com" class="w-full h-full border-none"></iframe>
+        
+        <!-- Sliding Friend links drawer inside the iframe display -->
+        <div id="friend-drawer" class="absolute top-0 right-0 h-full w-80 bg-base-200 border-l border-base-content/10 shadow-2xl transform translate-x-full transition-transform duration-300 ease-in-out z-10 flex flex-col">
+          <div class="p-4 border-b border-base-content/10 flex justify-between items-center select-none">
+            <h3 class="font-bold flex items-center gap-2"><span class="text-primary">✨</span> Curated Friends</h3>
+            <button id="btn-close-friends" class="btn btn-sm btn-circle btn-ghost">✕</button>
+          </div>
+          <div class="flex-grow overflow-y-auto p-4 flex flex-col gap-3" id="friend-sites-list">
+            <!-- Friend links will populate here dynamically -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= TAB 2: WRITE POST ================= -->
+    <section id="tab-write" class="tab-content flex flex-grow flex-col h-full">
+      <div class="bg-base-200 border-b border-base-content/10 px-6 py-4 flex justify-between items-center flex-shrink-0 select-none">
+        <div class="flex items-center gap-3">
+          <h2 class="text-lg font-bold">✍️ Write Post</h2>
+          <span id="draft-badge" class="badge badge-sm badge-ghost">Local Auto-Saved</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <!-- File Import -->
+          <button id="btn-import-md" class="btn btn-sm btn-outline btn-secondary gap-1.5">
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" /></svg>
+            <span>Import Markdown</span>
+          </button>
+          <button id="btn-clear-editor" class="btn btn-sm btn-ghost text-error gap-1.5">
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>
+            <span>Reset</span>
+          </button>
+          <div class="divider divider-horizontal mx-1"></div>
+          <!-- Publish Action -->
+          <button id="btn-open-publish-modal" class="btn btn-sm btn-primary gap-1.5 shadow-lg shadow-primary/20">
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" /></svg>
+            <span>Submit PR</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Editor Shell: scrollable content -->
+      <div class="flex-grow overflow-y-auto p-6 flex flex-col gap-6">
+        
+        <!-- Metadata Form Card -->
+        <div class="card bg-base-200 border border-base-content/5 shadow-md">
+          <div class="card-body p-6 flex flex-col gap-4">
+            <h3 class="text-xs uppercase font-extrabold tracking-wider text-base-content/50 select-none">Post Meta Specifications</h3>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div class="flex flex-col gap-1 md:col-span-2">
+                <label class="text-[10px] uppercase font-bold text-base-content/60 select-none">Post Title *</label>
+                <input id="meta-title" type="text" class="input input-bordered input-sm bg-base-100 font-semibold" placeholder="e.g. My Awesome Post" required />
+              </div>
+              <div class="flex flex-col gap-1">
+                <label class="text-[10px] uppercase font-bold text-base-content/60 select-none">Publish Date *</label>
+                <input id="meta-date" type="date" class="input input-bordered input-sm bg-base-100 font-semibold [color-scheme:dark]" />
+              </div>
+              <div class="flex flex-col gap-1 md:col-span-3">
+                <label class="text-[10px] uppercase font-bold text-base-content/60 select-none">Brief Description *</label>
+                <input id="meta-desc" type="text" class="input input-bordered input-sm bg-base-100" placeholder="e.g. A brief overview of this content for SEO..." required />
+              </div>
+              <div class="flex flex-col gap-1">
+                <label class="text-[10px] uppercase font-bold text-base-content/60 select-none">Cover Image URL</label>
+                <input id="meta-image" type="text" class="input input-bordered input-sm bg-base-100" placeholder="e.g. /image/posts/cover.jpg or select from Media" />
+              </div>
+              <div class="flex flex-col gap-1">
+                <label class="text-[10px] uppercase font-bold text-base-content/60 select-none">Badge Indicator</label>
+                <input id="meta-badge" type="text" class="input input-bordered input-sm bg-base-100" placeholder="e.g. Pin, New, Hot" />
+              </div>
+              <div class="flex flex-col gap-1">
+                <label class="text-[10px] uppercase font-bold text-base-content/60 select-none">Slug Override (Optional)</label>
+                <input id="meta-slug" type="text" class="input input-bordered input-sm bg-base-100 font-mono" placeholder="auto-generated from title if empty" />
+              </div>
+              <div class="flex flex-col gap-1 md:col-span-2">
+                <label class="text-[10px] uppercase font-bold text-base-content/60 select-none">Categories (Comma-separated)</label>
+                <input id="meta-categories" type="text" class="input input-bordered input-sm bg-base-100" placeholder="e.g. Tech, Life" />
+              </div>
+              <div class="flex flex-col gap-1">
+                <label class="text-[10px] uppercase font-bold text-base-content/60 select-none">Tags (Comma-separated)</label>
+                <input id="meta-tags" type="text" class="input input-bordered input-sm bg-base-100" placeholder="e.g. electron, javascript" />
+              </div>
+            </div>
+
+            <!-- Draft Switch -->
+            <div class="flex items-center gap-2 mt-2 select-none">
+              <input type="checkbox" id="meta-draft" class="checkbox checkbox-primary checkbox-xs" />
+              <label for="meta-draft" class="text-xs text-base-content/75 cursor-pointer">Mark as Draft (excludes from main feed listing until edited)</label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Markdown Editor & Preview Panel (Split screen) -->
+        <div class="flex-grow grid grid-cols-1 lg:grid-cols-2 gap-4 min-h-[500px]">
+          
+          <!-- Editor Panel -->
+          <div class="flex flex-col border border-base-content/10 bg-base-200 rounded-xl overflow-hidden shadow-sm">
+            <!-- Editor Toolbar -->
+            <div class="bg-base-300 px-4 py-2 border-b border-base-content/5 flex flex-wrap gap-1 select-none">
+              <button class="tool-icon-btn" data-shortcut="bold" title="Bold"><b>B</b></button>
+              <button class="tool-icon-btn" data-shortcut="italic" title="Italic"><i>I</i></button>
+              <button class="tool-icon-btn" data-shortcut="header" title="Header">H</button>
+              <div class="w-[1px] bg-base-content/10 mx-1"></div>
+              <button class="tool-icon-btn" data-shortcut="code" title="Code block">
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" /></svg>
+              </button>
+              <button class="tool-icon-btn" data-shortcut="link" title="Insert Link">
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" /></svg>
+              </button>
+              <button class="tool-icon-btn" data-shortcut="quote" title="Blockquote">“</button>
+              <button class="tool-icon-btn" data-shortcut="table" title="Insert Table">
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3 10h18M3 14h18m-9-4v8m-7 0h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+              </button>
+              <button class="tool-icon-btn" data-shortcut="image" title="Insert Image Link">
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+              </button>
+            </div>
+            <!-- Editor Textarea -->
+            <textarea id="editor-textarea" class="flex-grow w-full p-4 bg-base-100 border-none font-mono text-sm focus:outline-none resize-none leading-relaxed" placeholder="Type Markdown here... Drag/drop files to import, paste or drop images to add."></textarea>
+            <div class="bg-base-300 px-4 py-1.5 border-t border-base-content/5 text-[10px] text-base-content/40 flex justify-between select-none font-semibold">
+              <div>Characters: <span id="char-count">0</span> &bull; Lines: <span id="line-count">0</span></div>
+              <div>Markdown Enabled</div>
+            </div>
+          </div>
+
+          <!-- Preview Panel -->
+          <div class="flex flex-col border border-base-content/10 bg-base-200 rounded-xl overflow-hidden shadow-sm">
+            <div class="bg-base-300 px-4 py-2.5 border-b border-base-content/5 text-xs font-bold uppercase tracking-wider text-base-content/50 flex justify-between items-center select-none">
+              <span>👀 Live HTML Preview</span>
+              <span class="badge badge-sm badge-primary badge-outline">Reactive</span>
+            </div>
+            <div id="preview-container" class="flex-grow p-6 bg-base-100 overflow-y-auto markdown-body prose prose-sm max-w-none">
+              <!-- Rendered Markdown goes here -->
+              <p class="text-base-content/30 italic">Start writing to see preview...</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= TAB 3: MEDIA LIBRARY ================= -->
+    <section id="tab-media" class="tab-content flex flex-grow flex-col h-full select-none">
+      <div class="bg-base-200 border-b border-base-content/10 px-6 py-4 flex justify-between items-center flex-shrink-0">
+        <div class="flex items-center gap-3">
+          <h2 class="text-lg font-bold">🖼️ Media Assets</h2>
+          <span class="badge badge-sm badge-info" id="media-count">0 Images</span>
+        </div>
+        <button id="btn-add-image" class="btn btn-sm btn-primary gap-1.5">
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" /></svg>
+          <span>Add Local Image</span>
+        </button>
+      </div>
+
+      <div class="flex-grow overflow-y-auto p-6 flex flex-col gap-6">
+        <!-- Drag Drop Zone -->
+        <div id="media-drop-zone" class="border-2 border-dashed border-base-content/20 hover:border-primary hover:bg-base-200/50 rounded-2xl p-8 text-center cursor-pointer transition flex flex-col items-center justify-center gap-2 group">
+          <div class="text-4xl group-hover:scale-110 transition duration-300">🖼️</div>
+          <div class="font-bold text-sm">Drag and Drop Images Here</div>
+          <div class="text-xs text-base-content/50">Supports PNG, JPG, JPEG, WEBP, GIF, SVG (Processed locally, committed with PR)</div>
+        </div>
+
+        <!-- Gallery Grid -->
+        <h3 class="text-xs uppercase font-extrabold tracking-wider text-base-content/50 border-b border-base-content/10 pb-2">Staged Gallery</h3>
+        <div id="media-gallery" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          <!-- Populated by JS -->
+          <div class="col-span-full text-center py-12 text-sm text-base-content/30 italic">No image assets staged. Add some to reference in your post!</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= TAB 4: SETTINGS ================= -->
+    <section id="tab-settings" class="tab-content flex flex-grow flex-col h-full">
+      <div class="bg-base-200 border-b border-base-content/10 px-6 py-4 flex justify-between items-center flex-shrink-0 select-none">
+        <h2 class="text-lg font-bold">⚙️ GitHub Configuration</h2>
+      </div>
+
+      <div class="flex-grow overflow-y-auto p-6 flex flex-col gap-6 max-w-3xl mx-auto w-full">
+        
+        <!-- Repo details -->
+        <div class="card bg-base-200 border border-base-content/5 shadow-md">
+          <div class="card-body p-6 flex flex-col gap-4">
+            <h3 class="text-sm font-bold border-b border-base-content/10 pb-2 flex items-center gap-2"><svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" /></svg> Repository Credentials</h3>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div class="flex flex-col gap-1">
+                <label class="text-[10px] uppercase font-bold text-base-content/60">Target Repository Owner *</label>
+                <input id="set-repo-owner" type="text" class="input input-bordered input-sm bg-base-100 font-semibold" placeholder="muyufly" />
+              </div>
+              <div class="flex flex-col gap-1">
+                <label class="text-[10px] uppercase font-bold text-base-content/60">Target Repository Name *</label>
+                <input id="set-repo-name" type="text" class="input input-bordered input-sm bg-base-100 font-semibold" placeholder="muyufly.github.io" />
+              </div>
+              <div class="flex flex-col gap-1">
+                <label class="text-[10px] uppercase font-bold text-base-content/60">Default Branch Name *</label>
+                <input id="set-branch" type="text" class="input input-bordered input-sm bg-base-100" placeholder="main" />
+              </div>
+              <div class="flex flex-col gap-1">
+                <label class="text-[10px] uppercase font-bold text-base-content/60">Personal Access Token (PAT) *</label>
+                <input id="set-pat" type="password" class="input input-bordered input-sm bg-base-100 font-mono" placeholder="github_pat_..." />
+              </div>
+            </div>
+            
+            <div class="flex items-center gap-3 mt-4">
+              <button id="btn-save-settings" class="btn btn-sm btn-primary">Save Settings</button>
+              <button id="btn-test-settings" class="btn btn-sm btn-outline btn-secondary">Test Connection</button>
+              <span id="settings-status-badge" class="text-xs font-semibold hidden"></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Documentation Card -->
+        <div class="card bg-base-200 border border-base-content/5 shadow-md">
+          <div class="card-body p-6 flex flex-col gap-3">
+            <h3 class="text-sm font-bold border-b border-base-content/10 pb-2 flex items-center gap-2"><svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg> Secure Token Guide</h3>
+            <p class="text-xs text-base-content/75 leading-relaxed">
+              We value your security! The personal access token is **stored locally on your computer** and only used to interact with the GitHub API directly from this app.
+            </p>
+            
+            <!-- Steps -->
+            <div class="collapse collapse-arrow bg-base-100 border border-base-content/5 rounded-xl">
+              <input type="checkbox" /> 
+              <div class="collapse-title text-xs font-semibold">
+                How to generate a Fine-Grained Access Token (Recommended)
+              </div>
+              <div class="collapse-content text-xs text-base-content/80 flex flex-col gap-2">
+                <ol class="list-decimal pl-4 flex flex-col gap-1.5">
+                  <li>Go to <a class="text-primary hover:underline link-external" href="https://github.com/settings/personal-access-tokens/new">GitHub Settings -> Tokens (Fine-grained) -> Generate New</a>.</li>
+                  <li>Name your token (e.g. <code>Frosti Blog Contributor</code>) and set expiration.</li>
+                  <li>Under <b>Repository access</b>, choose <b>Only select repositories</b>, and pick <code>muyufly.github.io</code>.</li>
+                  <li>Under <b>Permissions</b> -> <b>Repository permissions</b>:
+                    <ul class="list-disc pl-4 mt-1 flex flex-col gap-1">
+                      <li>Set <b>Contents</b> to <b>Access: Read and Write</b> (required to upload MD files and images).</li>
+                      <li>Set <b>Pull requests</b> to <b>Access: Read and Write</b> (required to submit your PR).</li>
+                    </ul>
+                  </li>
+                  <li>Click <b>Generate token</b>, copy it, and paste it into the field above!</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ================= TOAST NOTIFICATION STACK ================= -->
+  <div id="toast-container" class="fixed top-6 right-6 z-50 flex flex-col gap-2 pointer-events-none select-none"></div>
+
+  <!-- ================= SUBMIT PR PIPELINE MODAL ================= -->
+  <dialog id="publish-modal" class="modal modal-bottom sm:modal-middle select-none">
+    <div class="modal-box max-w-lg bg-base-200 border border-base-content/10 shadow-2xl p-6">
+      <h3 class="font-extrabold text-lg flex items-center gap-2"><span class="text-primary animate-pulse">🚀</span> Launch PR Contribution</h3>
+      <p class="text-xs text-base-content/60 mt-1">This will initialize the serverless Git pipeline to submit your post.</p>
+      
+      <!-- Stepper Progress UI -->
+      <div class="flex flex-col gap-3 mt-6">
+        <!-- Forking Step -->
+        <div class="step-progress-row" id="step-fork">
+          <div class="step-indicator">
+            <span class="loading loading-spinner loading-xs hidden"></span>
+            <span class="check-mark hidden">✓</span>
+            <span class="step-num">1</span>
+          </div>
+          <div class="step-details">
+            <h4 class="font-bold text-sm">Forking Repository</h4>
+            <p class="text-[10px] text-base-content/50">Creating a copy of the blog under your GitHub account...</p>
+          </div>
+        </div>
+
+        <!-- Branching Step -->
+        <div class="step-progress-row" id="step-branch">
+          <div class="step-indicator">
+            <span class="loading loading-spinner loading-xs hidden"></span>
+            <span class="check-mark hidden">✓</span>
+            <span class="step-num">2</span>
+          </div>
+          <div class="step-details">
+            <h4 class="font-bold text-sm">Creating Contribution Branch</h4>
+            <p class="text-[10px] text-base-content/50">Setting up a dedicated workspace branch...</p>
+          </div>
+        </div>
+
+        <!-- Media Assets Step -->
+        <div class="step-progress-row" id="step-assets">
+          <div class="step-indicator">
+            <span class="loading loading-spinner loading-xs hidden"></span>
+            <span class="check-mark hidden">✓</span>
+            <span class="step-num">3</span>
+          </div>
+          <div class="step-details">
+            <h4 class="font-bold text-sm">Uploading Image Assets (<span id="asset-upload-progress">0/0</span>)</h4>
+            <p class="text-[10px] text-base-content/50">Uploading binary images as Git blobs to the repository branch...</p>
+          </div>
+        </div>
+
+        <!-- Content Post Step -->
+        <div class="step-progress-row" id="step-commit-md">
+          <div class="step-indicator">
+            <span class="loading loading-spinner loading-xs hidden"></span>
+            <span class="check-mark hidden">✓</span>
+            <span class="step-num">4</span>
+          </div>
+          <div class="step-details">
+            <h4 class="font-bold text-sm">Committing Markdown Post</h4>
+            <p class="text-[10px] text-base-content/50">Compiling frontmatter headers and body to save the post file...</p>
+          </div>
+        </div>
+
+        <!-- PR creation Step -->
+        <div class="step-progress-row" id="step-pr">
+          <div class="step-indicator">
+            <span class="loading loading-spinner loading-xs hidden"></span>
+            <span class="check-mark hidden">✓</span>
+            <span class="step-num">5</span>
+          </div>
+          <div class="step-details">
+            <h4 class="font-bold text-sm">Opening Pull Request</h4>
+            <p class="text-[10px] text-base-content/50">Opening a PR from your branch back to the core blog repository...</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Live logs console -->
+      <div class="mt-6 bg-black text-emerald-400 font-mono text-[10px] p-3 rounded-lg border border-base-content/10 h-32 overflow-y-auto" id="publish-logs">
+        [system] Idle... Ready to launch.
+      </div>
+
+      <div class="modal-action flex justify-between items-center">
+        <span class="text-xs text-error font-bold" id="modal-error-msg"></span>
+        <div class="flex gap-2">
+          <button id="btn-cancel-modal" class="btn btn-sm btn-ghost">Cancel</button>
+          <button id="btn-execute-publish" class="btn btn-sm btn-primary">Start Execution</button>
+          <a id="btn-view-pr" href="#" target="_blank" class="btn btn-sm btn-success gap-1.5 hidden">
+            <span>View PR on GitHub</span>
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- JS Controller -->
+  <script src="app.js"></script>
+</body>
+</html>
